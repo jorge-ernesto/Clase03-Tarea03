@@ -1,0 +1,15 @@
+{% for c in empleados %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{c.codigo}}</td>
+        <td>{{c.nombre}}</td>
+        <td>{{c.apellidos}}</td>
+        <td>{{c.sexo}}</td>
+        <td>{{c.fecha_nacimiento}}</td>
+        <td>{{c.cargo}}</td>
+        <td>{{c.area}}</td>
+        <td>{{c.sueldo}}</td>
+        <td><a class="btn btn-success edit" name="{{c.id}}">Editar</a></td>
+        <td><a class="btn btn-danger delete" name="{{c.id}}">Eliminar</a></td>
+    </tr>
+{% endfor %}

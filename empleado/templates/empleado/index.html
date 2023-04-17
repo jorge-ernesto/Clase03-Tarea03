@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Empleados {% endblock %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-12">
+
+        <h4>Listado de Empleados</h4>
+        <h4>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEmpleado" onclick="eliminarNuevo()">
+                Crear Empleado
+            </button>
+        </h4>
+
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Sexo</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Cargo</th>
+                        <th>Area</th>
+                        <th>Sueldo</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form id="formCreate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="eliminarNuevo()"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <th>Caracteristica</th>
+                                <th>Valor</th>
+                            </thead>
+                            <tbody>
+                                {% csrf_token %}
+                                <input type="hidden" id="id">
+                                <tr>
+                                    <td> <label for="codigo">Codigo</label> </td>
+                                    <td> <input type="text" class="form-control" id="codigo" placeholder="Ingrese Codigo" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="nombre">Nombre</label> </td>
+                                    <td> <input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="apellidos">Apellidos</label> </td>
+                                    <td> <input type="text" class="form-control" id="apellidos" placeholder="Ingrese Apellidos" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="sexo">Sexo</label> </td>
+                                    <td>
+                                        <select class="form-select" id="sexo" required>
+                                            <option value selected>Seleccionar genero</option>
+                                            <option value="M">MASCULINO</option>
+                                            <option value="F">FEMENINO</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="fecha_nacimiento">Fecha Nacimiento</label> </td>
+                                    <td> <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Ingrese Fecha de Nacimiento" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="cargo">Cargo</label> </td>
+                                    <td>
+                                        <select class="form-select" id="cargo" required>
+                                            <option value selected>Seleccionar cargo</option>
+                                            <option value="Soporte">Soporte</option>
+                                            <option value="Desarrollo">Desarrollo</option>
+                                            <option value="Lider Tecnico">Lider Tecnico</option>
+                                            <option value="Vendedor">Vendedor</option>
+                                            <option value="Jefe de Operaciones">Jefe de Operaciones</option>
+                                            <option value="Gerente General">Gerente General</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="area">Area</label> </td>
+                                    <td>
+                                        <select class="form-select" id="area" required>
+                                            <option value selected>Seleccionar area</option>
+                                            <option value="Soporte">Soporte</option>
+                                            <option value="Desarrollo">Desarrollo</option>
+                                            <option value="Ventas">Ventas</option>
+                                            <option value="Operaciones">Operaciones</option>
+                                            <option value="Gerencia">Gerencia</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="sueldo">Sueldo</label> </td>
+                                    <td> <input type="number" class="form-control" id="sueldo" placeholder="Ingrese Sueldo" required> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="eliminarNuevo()">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="create">Crear</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
